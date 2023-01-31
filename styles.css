@@ -1,0 +1,141 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+body {
+    background: #efefef;
+}
+
+.container {
+    height: 550px;
+    width: 450px;
+    margin: 100px auto;
+    background-color: darkgray;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.output {
+    width: 92%;
+    height: 20%;
+    margin: 4% auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #efefef;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 10px 25px 10px 0;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-align: right;
+}
+
+.current {
+    font-size: 2em;
+    min-height: 32px;
+}
+
+.previous {
+    min-height: 16px;
+}
+
+.row1 {
+    width: 92%;
+    height: 12%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.row1 .clear,
+.row1 .delete {
+    flex: 1;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.row1 .clear:hover,
+.row1 .delete:hover {
+    cursor: pointer;
+}
+
+.row1 .clear{
+    background-color: rgba(243, 35, 35, 0.7);
+}
+
+.row1 .clear:hover{
+    background-color: rgba(243, 35, 35, 0.4);
+}
+
+.row1 .clear:active {
+    background-color: rgba(243, 35, 35, 0.2);
+}
+
+.row1 .delete {
+    background-color: rgba(38, 92, 255, 0.7);
+}
+
+.row1 .delete:hover {
+    background-color: rgba(38, 92, 255, 0.4);
+}
+
+.row1 .delete:active {
+    background-color: rgba(38, 92, 255, 0.2);
+}
+
+.row2, .row3, .row4, .row5 {
+    width: 92%;
+    height: 12%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.row2 {
+    margin-top: 4%;
+}
+
+.row3, .row4, .row5 {
+    margin-top: 3%;
+}
+
+.row2 button,
+.row3 button,
+.row4 button,
+.row5 button {
+    flex: 1;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.row2 button:hover,
+.row3 button:hover,
+.row4 button:hover,
+.row5 button:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+.row2 button:active,
+.row3 button:active,
+.row4 button:active,
+.row5 button:active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+

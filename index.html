@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="output">
+            <div class="previous"></div>
+            <div class="current">0</div>
+        </div>
+        <div class="row1">
+            <button class="clear">CLEAR</button>
+            <button class="delete">DELETE</button>
+        </div>
+        <div class="row2">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>÷</button>
+        </div>
+        <div class="row3">
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>×</button>
+        </div>
+        <div class="row4">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>-</button>
+        </div>
+        <div class="row5">
+            <button>.</button>
+            <button>0</button>
+            <button>=</button>
+            <button>+</button>
+        </div>
+        
+    </div>
+
+</body>
+<script>
+
+    let previousValue = ""
+    let currentValue = ""
+
+    const btns = document.querySelectorAll('button')
+    const previosuDisplay = document.querySelector('.previous')
+    const currentDisplay = document.querySelector('.current')
+    const clearBtn = document.querySelector('.clear')
+    const deleteBtn = document.querySelector('.delete')
+
+    btns.forEach(btn => {
+        if ([0,1,2,3,4,5,6,7,8,9].includes(parseInt(btn.textContent))) {
+            btn.addEventListener('click', (e) => {
+                if (e.target.textContent === '0' && currentDisplay.textContent === '0') return
+                if (e.target.textContent === '0') currentValue = ''
+                currentValue +=  e.target.textContent
+                currentDisplay.textContent = currentValue
+            })
+        } else if (['×','-','+','÷'].includes(btn.textContent)) {
+            btn.addEventListener('click', (e) => {
+                if (previosuDisplay.textContent && !currentDisplay.textContent) return
+
+                if (previosuDisplay.textContent && currentDisplay.textContent) {
+                    let a = parseInt(previousValue)
+                    let b = parseInt(currentValue)
+                    let operatorString = previosuDisplay.textContent.slice(-1)
+                    let result = operate(operatorString, a, b)
+                    
+                    previousValue = result.toString()
+                    currentValue = ''
+                    previosuDisplay.textContent = `${previousValue} ${e.target.textContent}`
+                    currentDisplay.textContent = ''
+                    return
+                }
+
+                previosuDisplay.textContent = currentDisplay.textContent + ` ${e.target.textContent}`
+                previousValue = currentDisplay.textContent
+                currentValue = ''
+                currentDisplay.textContent = ''
+            })
+        } else if (btn.textContent === '=') {
+            btn.addEventListener('click', (e) => {
+                if (!previosuDisplay.textContent) return
+                if (previosuDisplay.textContent && !currentDisplay.textContent) return
+                let a = parseInt(previousValue)
+                let b = parseInt(currentValue)
+                operatorString = previosuDisplay.textContent.slice(-1)
+                let result = operate(operatorString, a, b)
+                console.log(result)
+
+                previousValue = ''
+                previosuDisplay.textContent = ''
+                currentValue = result.toString()
+                currentDisplay.textContent = currentValue
+            })
+        }
+    })
+
+    clearBtn.addEventListener('click', (e) => {
+        previousValue = ''
+        currentValue = ''
+        previosuDisplay.textContent = previousValue
+        currentDisplay.textContent = '0'
+    })
+
+    deleteBtn.addEventListener('click', (e) => {
+        if (currentValue === '') return
+        currentValue = currentValue.slice(0, -1)
+        currentDisplay.textContent = currentValue
+    })
+
+
+    function operate(operator, a, b) {
+        if (operator === '×') return multiply(a, b)
+        if (operator === '÷') return divide(a, b)
+        if (operator === '+') return add(a, b)
+        if (operator === '-') return subtract(a, b)
+    }
+    function add(a, b) {
+        return a + b
+    }
+    function subtract(a, b) {
+        return a - b
+    }
+    function multiply(a, b) {
+        return a * b
+    }
+    function divide(a, b) {
+        return a / b
+    }
+
+</script>
+</html>
